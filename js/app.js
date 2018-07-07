@@ -2,6 +2,8 @@ let stars = [];
 let sStars = [];
 // let planets = [];
 
+let glitch = false;
+
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background("#00171F");
@@ -11,11 +13,16 @@ function setup() {
         stars.push(star);
     }
 
+}
 
+function mousePressed() {
+    glitch = (glitch) ? false : true;
 }
 
 function draw() {
-    background("#00171F");
+    if (!glitch) {
+        background("#00171F");
+    }
 
     // if (random(0, 10000) > 9990) {
     //     let pSize = random(100, 500);
