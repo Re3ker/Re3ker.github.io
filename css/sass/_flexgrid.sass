@@ -1,0 +1,55 @@
+.row
+    display: flex
+
+.column
+    flex: 1
+    box-sizing: border-box
+    padding: 0 10px
+
+    .is-one-fifth
+        width: 20%
+
+    .is-one-quarter
+        width: 25%
+
+    .is-one-third
+        width: 33.3333%
+
+    .is-two-fifths
+        width: 40%
+
+    .is-half
+        width: 50%
+
+    .is-three-fifths
+        width: 60%
+
+    .is-two-thirds
+        width: 66.6666%
+
+    .is-three-quarters
+        width: 75%
+
+    .is-four-fifths
+        width: 80%
+    
+    .is-one-fifth,
+    .is-one-quarter,
+    .is-one-third,
+    .is-two-fifths,
+    .is-half,
+    .is-three-fifths,
+    .is-two-thirds,
+    .is-three-quarters,
+    .is-four-fifths
+        flex: none
+
+@media (max-width: 768px)
+    .row
+        display: block
+    
+    .column
+        margin-bottom: 20px
+    
+    .column:last-child
+        margin-bottom: 0

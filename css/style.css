@@ -1,27 +1,101 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700i");
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html,
 body {
-    height: 100%;
+  min-height: 100vh;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 body {
-    margin: 0;
-    background: #ececec;
-    color: #494949;
-    font-family: sans-serif;
+  background: #00171F;
+  color: #FFFFFF;
 }
 
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+.column .is-one-fifth {
+  width: 20%;
+}
+.column .is-one-quarter {
+  width: 25%;
+}
+.column .is-one-third {
+  width: 33.3333%;
+}
+.column .is-two-fifths {
+  width: 40%;
+}
+.column .is-half {
+  width: 50%;
+}
+.column .is-three-fifths {
+  width: 60%;
+}
+.column .is-two-thirds {
+  width: 66.6666%;
+}
+.column .is-three-quarters {
+  width: 75%;
+}
+.column .is-four-fifths {
+  width: 80%;
+}
+.column .is-one-fifth,
+.column .is-one-quarter,
+.column .is-one-third,
+.column .is-two-fifths,
+.column .is-half,
+.column .is-three-fifths,
+.column .is-two-thirds,
+.column .is-three-quarters,
+.column .is-four-fifths {
+  flex: none;
+}
+
+@media (max-width: 768px) {
+  .row {
+    display: block;
+  }
+
+  .column {
+    margin-bottom: 20px;
+  }
+
+  .column:last-child {
+    margin-bottom: 0;
+  }
+}
 main {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: auto;
+  padding: 100px 0;
+  position: relative;
+  z-index: 2;
+  text-align: center;
 }
 
-h1 {
-    font-size: 5em;
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+
+canvas {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
 }
