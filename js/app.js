@@ -6,7 +6,8 @@ let glitch = false;
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    background("#00171F");
+    background("#130a20");
+    console.log('%c What are you looking for? ', 'background: #391e61; color: #ffffff');
 
     for (let i = 0; i < 1000; i++) {
         let star = new Star(random(10, width - 10), random(0, height - 10), random(1, 10));
@@ -21,7 +22,7 @@ function mousePressed() {
 
 function draw() {
     if (!glitch) {
-        background("#00171F");
+        background("#130a20");
     }
 
     // if (random(0, 10000) > 9990) {
@@ -66,7 +67,7 @@ class Star {
         this.pos = createVector(x, y);
         this.size = size;
         this.speed = random(3, 8);
-        let colors = ["#003459", "#007EA7", "#00A8E8"];
+        let colors = ["#7742c5", "#572e95", "#391e61"];
         this.color = random(colors);
     }
 
