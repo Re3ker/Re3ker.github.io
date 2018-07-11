@@ -1,7 +1,5 @@
 let bubbles = [];
 
-let glitch = false;
-
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background("#130a20");
@@ -19,9 +17,7 @@ function mousePressed() {
 }
 
 function draw() {
-    if (!glitch) {
-        background("#130a20");
-    }
+    background("#130a20");
 
     bubbles.forEach(bubble => {
         bubble.move();
@@ -40,6 +36,10 @@ class Bubble {
         this.speed = random(3, 8);
         let colors = ["#7742c5", "#572e95", "#391e61"];
         this.color = random(colors);
+        this.angle = 0;
+
+        this.scalar = random(10, 30);
+        this.angleRate = random(0.05, 0.5);
     }
 
     move() {
@@ -49,6 +49,19 @@ class Bubble {
             this.pos.x = random(0, width - 10);
             this.speed = random(3, 8);
             this.size = random(1, 10);
+
+            this.scalar = random(0, 30);
+            this.angleRate = random(0.05, 0.1);
+            this.angle = this.angleRate;
+
+        }
+
+        this.pos.x = (this.pos.x + this.scalar * (cos(this.angle) * 0.3));
+
+        if (this.angle >= 359) {
+            this.angle = 0;
+        } else {
+            this.angle += this.angleRate;
         }
     }
 
