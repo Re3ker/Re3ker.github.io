@@ -1,6 +1,4 @@
-let stars = [];
-let sStars = [];
-// let planets = [];
+let bubbles = [];
 
 let glitch = false;
 
@@ -9,9 +7,9 @@ function setup() {
     background("#130a20");
     console.log('%c What are you looking for? ', 'background: #391e61; color: #ffffff');
 
-    for (let i = 0; i < 1000; i++) {
-        let star = new Star(random(10, width - 10), random(0, height - 10), random(1, 10));
-        stars.push(star);
+    for (let i = 0; i < 750; i++) {
+        let bubble = new Bubble(random(10, width - 10), random(0, height - 10), random(1, 10));
+        bubbles.push(bubble);
     }
 
 }
@@ -25,36 +23,9 @@ function draw() {
         background("#130a20");
     }
 
-    // if (random(0, 10000) > 9990) {
-    //     let pSize = random(100, 500);
-    //     let planet = new Planet(-pSize, random(0, height), pSize);
-    //     planets.push(planet);
-    // }
-
-    // for (let i = 0; i < planets.length; i++) {
-    //     planets[i].move();
-    //     planets[i].draw();
-    //     if (planets[i].pos.x - planets[i].size / 2 > width) {
-    //         planets.splice(i, 1);
-    //     }
-    // }
-
-
-    if (random(0, 10000) > 9900) {
-        sStars.push(new ShootingStar(-10, random(0, height - 10), random(1, 2)));
-    }
-
-    for (let i = 0; i < sStars.length; i++) {
-        sStars[i].move();
-        sStars[i].draw();
-        if (sStars[i].pos.x - sStars[i].range > width) {
-            sStars.splice(i, 1);
-        }
-    }
-
-    stars.forEach(star => {
-        star.move();
-        star.draw();
+    bubbles.forEach(bubble => {
+        bubble.move();
+        bubble.draw();
     });
 }
 
@@ -62,7 +33,7 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
 
-class Star {
+class Bubble {
     constructor(x, y, size) {
         this.pos = createVector(x, y);
         this.size = size;
@@ -72,10 +43,10 @@ class Star {
     }
 
     move() {
-        this.pos.x += this.speed;
-        if (this.pos.x + this.size / 2 > width) {
-            this.pos.x = -this.size;
-            this.pos.y = random(0, height - 10);
+        this.pos.y -= this.speed;
+        if (this.pos.y + this.size / 2 < 0) {
+            this.pos.y = height + this.size;
+            this.pos.x = random(0, width - 10);
             this.speed = random(3, 8);
             this.size = random(1, 10);
         }
