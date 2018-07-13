@@ -3,17 +3,13 @@ let bubbles = [];
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background("#130a20");
-    console.log('%c What are you looking for? ', 'background: #391e61; color: #ffffff');
+    console.log('%c What are you looking for? ', 'color: #ffffff; -webkit-text-stroke: 2px #391e61; font-size: 42px; font-weight: bold;');
 
     for (let i = 0; i < 750; i++) {
         let bubble = new Bubble(random(10, width - 10), random(0, height - 10), random(1, 10));
         bubbles.push(bubble);
     }
 
-}
-
-function mousePressed() {
-    glitch = (glitch) ? false : true;
 }
 
 function draw() {
