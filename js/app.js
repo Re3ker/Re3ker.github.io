@@ -4,7 +4,7 @@ let bgColor = "#130a20";
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background(bgColor);
-    console.log('%c What are you looking for? ', 'color: #ffffff; -webkit-text-stroke: 2px #391e61; font-size: 42px; font-weight: bold;');
+    console.log('%c Repository : https://github.com/Re3ker/Re3ker.github.io ', 'color: #ffffff; -webkit-text-stroke: 1px #391e61; font-size: 28px; font-weight: bold;');
 
     for (let i = 0; i < 750; i++) {
         let bubble = new Bubble({
@@ -36,7 +36,7 @@ function draw() {
     background(bgColor);
 
     bubbles.forEach(bubble => {
-        bubble.move();
+        bubble.update();
         bubble.draw();
     });
 }
@@ -57,7 +57,7 @@ class Bubble {
         this.angleInc = random(this.options.angleInc.min, this.options.angleInc.max);
     }
 
-    move() {
+    update() {
         this.pos.y -= this.speed;
         if (this.pos.y + this.size / 2 < 0) {
             this.pos.y = height + this.size;
