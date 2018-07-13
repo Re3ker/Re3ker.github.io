@@ -1,19 +1,39 @@
 let bubbles = [];
+let bgColor = "#130a20";
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    background("#130a20");
+    background(bgColor);
     console.log('%c What are you looking for? ', 'color: #ffffff; -webkit-text-stroke: 2px #391e61; font-size: 42px; font-weight: bold;');
 
     for (let i = 0; i < 750; i++) {
-        let bubble = new Bubble(random(10, width - 10), random(0, height - 10), random(1, 10));
+        let bubble = new Bubble({
+            pos: createVector(random(0, width), random(0, height)),
+            size: {
+                min: 1,
+                max: 10
+            },
+            speed: {
+                min: 3,
+                max: 8
+            },
+            scalar: {
+                min: 0,
+                max: 5
+            },
+            angleInc: {
+                min: 0.01,
+                max: 0.1
+            },
+            colors: ["#7742c5", "#572e95", "#391e61"]
+        });
+
         bubbles.push(bubble);
     }
-
 }
 
 function draw() {
-    background("#130a20");
+    background(bgColor);
 
     bubbles.forEach(bubble => {
         bubble.move();
@@ -26,38 +46,35 @@ function windowResized() {
 }
 
 class Bubble {
-    constructor(x, y, size) {
-        this.pos = createVector(x, y);
-        this.size = size;
-        this.speed = random(3, 8);
-        let colors = ["#7742c5", "#572e95", "#391e61"];
-        this.color = random(colors);
+    constructor(options) {
+        this.options = options;
         this.angle = 0;
-
-        this.scalar = random(10, 30);
-        this.angleRate = random(0.05, 0.5);
+        this.color = random(this.options.colors);
+        this.pos = createVector(this.options.pos.x, this.options.pos.y);
+        this.size = random(this.options.size.min, this.options.size.max);
+        this.speed = random(this.options.speed.min, this.options.speed.max);
+        this.scalar = random(this.options.scalar.min, this.options.scalar.max);
+        this.angleInc = random(this.options.angleInc.min, this.options.angleInc.max);
     }
 
     move() {
         this.pos.y -= this.speed;
         if (this.pos.y + this.size / 2 < 0) {
             this.pos.y = height + this.size;
-            this.pos.x = random(0, width - 10);
-            this.speed = random(3, 8);
-            this.size = random(1, 10);
-
-            this.scalar = random(0, 30);
-            this.angleRate = random(0.05, 0.1);
-            this.angle = this.angleRate;
-
+            this.pos.x = random(0, width - this.size);
+            this.speed = random(this.options.speed.min, this.options.speed.max);
+            this.size = random(this.options.size.min, this.options.size.max);
+            this.scalar = random(this.options.scalar.min, this.options.scalar.max);
+            this.angleInc = random(this.options.angleInc.min, this.options.angleInc.max);
+            this.angle = this.angleInc;
         }
 
-        this.pos.x = (this.pos.x + this.scalar * (cos(this.angle) * 0.3));
+        this.pos.x = this.pos.x + this.scalar * (cos(this.angle));
 
         if (this.angle >= 359) {
             this.angle = 0;
         } else {
-            this.angle += this.angleRate;
+            this.angle += this.angleInc;
         }
     }
 
@@ -67,45 +84,3 @@ class Bubble {
         ellipse(this.pos.x, this.pos.y, this.size, this.size);
     }
 }
-
-class ShootingStar {
-    constructor(x, y, size) {
-        this.pos = createVector(x, y);
-        this.speed = random(80, 200);
-        this.color = "#ffffff";
-        this.range = random(10, 300);
-        this.size = size;
-    }
-
-    draw() {
-        stroke(this.color);
-        strokeWeight(this.size);
-        line(this.pos.x - this.range, this.pos.y, this.pos.x, this.pos.y);
-    }
-
-    move() {
-        this.pos.x += this.speed;
-    }
-
-}
-
-
-// class Planet {
-//     constructor(x, y, size) {
-//         this.pos = createVector(x, y);
-//         this.size = size;
-//         this.speed = random(1, 2);
-//         let colors = ["#090507", "#090004", "#0E1212", "#101712"];
-//         this.color = random(colors);
-//     }
-
-//     move() {
-//         this.pos.x += this.speed;
-//     }
-
-//     draw() {
-//         fill(this.color);
-//         noStroke();
-//         ellipse(this.pos.x, this.pos.y, this.size, this.size);
-//     }
-// }
