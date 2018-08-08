@@ -16,8 +16,8 @@
     let wordsLeft = 0;
 
     let difficulty = {
-        easy: 2,
-        medium: 1.3,
+        easy: 1.7,
+        medium: 1.2,
         hard: 0.7
     }
 
