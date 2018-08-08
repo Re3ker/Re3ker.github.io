@@ -1,0 +1,40 @@
+.word-list-container
+    text-align: center
+    .word-list
+        padding: 0
+        display: inline-block
+        padding-top: 3em
+        li
+            
+            transition: all linear 0.1s
+            text-align: center
+            display: inline-block
+            max-width: 9999px
+            padding: 0 20px
+            font-weight: bold
+            height: 3em
+            
+        .current
+            font-size: 4em
+            color: white
+            
+        .next
+            font-size: 4em
+            color: #777777
+            
+        .future, .off
+            max-width: 0
+        
+        .future
+            display: none
+
+.message
+    font-size: 2em
+    color: white
+    font-weight: bold
+
+    &.won
+        color: #44ff44
+    
+    &.lost
+        color: #ff0000
