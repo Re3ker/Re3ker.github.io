@@ -5,17 +5,20 @@
     const wordsList = document.querySelector('#wordList');
     const scoreDisplay = document.querySelector('#score');
     const timeDisplay = document.querySelector('#time');
+    const wordsLeftDisplay = document.querySelector('#wordsLeft');
     const message = document.querySelector('#message');
     let words = [];
     let currentWordIndex = 0;
     let countdownTimer;
     let timeLeft = 0;
     let isPlaying = false;
+    let score = 0;
+    let wordsLeft = 0;
 
     let difficulty = {
-        easy: 0.8,
-        medium: 0.5,
-        hard: 0.2
+        easy: 2,
+        medium: 1.3,
+        hard: 0.7
     }
 
     let settings = {
@@ -40,6 +43,8 @@
 
         await buildWordsList(words);
         time = setTime(words);
+        wordsLeft = words.length;
+        wordsLeftDisplay.innerHTML = wordsLeft;
 
         wordInput.addEventListener('input', matchWord);
     }
@@ -96,6 +101,10 @@
                 }
                 currentWordIndex++;
                 wordInput.value = '';
+                score++;
+                scoreDisplay.innerHTML = score;
+                wordsLeft -= 1;
+                wordsLeftDisplay.innerHTML = wordsLeft;
             }
         }
     }
