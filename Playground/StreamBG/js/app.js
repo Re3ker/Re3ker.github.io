@@ -9,10 +9,10 @@ function setup() {
   console.log('%c Repository : https://github.com/Re3ker/Re3ker.github.io ', 'color: #ffffff; -webkit-text-stroke: 1px #391e61; font-size: 28px; font-weight: bold;');
 
   hTitle = document.querySelector('#title');
-  hTitle.innerHTML = decodeURI(gup('title'));
+  hTitle.textContent = decodeURI(gup('title'));
 
   hSubtitle = document.querySelector('#subtitle');
-  hSubtitle.innerHTML = decodeURI(gup('subtitle'));
+  hSubtitle.textContent = decodeURI(gup('subtitle'));
 
   for (let i = 0; i < 750; i++) {
     let bubble = new Bubble({
